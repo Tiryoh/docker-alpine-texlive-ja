@@ -27,6 +27,31 @@ RUN apk add --no-cache perl fontconfig-dev freetype-dev make && \
     rm -fr /tmp/install-tl-unx && \
     apk del .fetch-deps
 
+# References: https://gist.github.com/e10101/a4e833120f8a66a22cd581241cc79ed0
+#           : https://qiita.com/zr_tex8r/items/9dfeafecca2d091abd02
+#           : https://github.com/googlefonts/noto-cjk
+# install noto font jp
+# フォントをインストールする場所は以下で探し, /fonts/以下は自由なディレクトリが可能.
+# $ kpsewhich -var-value=TEXMFLOCAL
+RUN mkdir -p /usr/local/texlive/texmf-local/fonts/opentype/google && \
+    cd /usr/local/texlive/texmf-local/fonts/opentype/google/ && \
+    # 以下はgoogle noto font cjkのjpフォントだけをインストールしている.
+    wget https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Black.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Bold.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-DemiLight.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Light.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Medium.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Regular.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSansJP-Thin.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-Black.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-Bold.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-ExtraLight.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-Light.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-Medium.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-Regular.otf \
+         https://github.com/googlefonts/noto-cjk/raw/master/NotoSerifJP-SemiBold.otf && \
+    mktexlsr
+
 WORKDIR /workdir
 
 CMD ["sh"]

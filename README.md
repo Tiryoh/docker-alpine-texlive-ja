@@ -38,29 +38,14 @@ Unless attributed otherwise, everything in this repository is under the MIT Lice
 
 ### Acknowledgements
 
+This project uses [googlefonts/noto-cjk](https://github.com/googlefonts/noto-cjk), released under the [SIL Open Font License 1.1](https://github.com/googlefonts/noto-cjk/blob/be6c059ac1587e556e2412b27f5155c8eb3ddbe6/LICENSE) by [Google Inc](https://www.google.com/get/noto/help/cjk/).
 
-This project is based on [Paperist/docker-alpine-texlive-ja](https://github.com/Paperist/docker-alpine-texlive-ja), released under the [MIT License](https://github.com/Paperist/docker-alpine-texlive-ja/blob/2c21cd26e049c040d879ac5686b99514851916a4/LICENSE).
+This project is based on the following projects.  See the LICENSE files of each project for details.
 
-```
-The MIT License (MIT)
-Copyright (c) 2016 Kaito Udagawa
-Copyright (c) 2016-2018 3846masa
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
+* [Paperist/docker-alpine-texlive-ja](https://github.com/Paperist/docker-alpine-texlive-ja), released under the [MIT License](https://github.com/Paperist/docker-alpine-texlive-ja/blob/2c21cd26e049c040d879ac5686b99514851916a4/LICENSE)
+  * Copyright (c) 2016 Kaito Udagawa
+  * Copyright (c) 2016-2018 3846masa
+* [solareenlo/docker-alpine-texlive-ja](https://github.com/solareenlo/docker-alpine-texlive-ja), released under the [MIT License](https://github.com/solareenlo/docker-alpine-texlive-ja/blob/a75eb10f7fb06258f2b98c3490afe4c355b451e5/LICENSE)
+  * Copyright (c) 2016 Kaito Udagawa
+  * Copyright (c) 2016-2019 3846masa
+  * Copyright (c) 2019 solareenlo
