@@ -19,33 +19,38 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@2.12
-      id: docker
-      with:
-        name: ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGENAME }}
-        username: ${{ env.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        snapshot: true
-    - name: Update GitHub wiki
-      env:
-        DOCKER_TAGNAME: ${{ steps.docker.outputs.tag }}
-        DOCKER_DIGEST_RAW: ${{ steps.docker.outputs.digest }}
-        DOCKER_SNAPSHOT: ${{ steps.docker.outputs.snapshot-tag }}
-      run: |
-        DOCKER_DIGEST=$(echo $DOCKER_DIGEST_RAW | sed -E 's/.*@sha256:(.*)/sha256-\1/g')
-        DOCKER_DIGEST_SHORT=$(echo $DOCKER_DIGEST | sed -E 's/.*([0-9a-z]{12})[0-9a-z]{52}$/\1/g')
-        DOCKER_IMAGE_HISTORY_URL=$(echo https://hub.docker.com/layers/${DOCKER_USERNAME}/${DOCKER_IMAGENAME}/${DOCKER_TAGNAME}/images/${DOCKER_DIGEST})
-        DOCKER_SNAPSHOT_IMAGE_HISTORY_URL=$(echo https://hub.docker.com/layers/${DOCKER_USERNAME}/${DOCKER_IMAGENAME}/${DOCKER_SNAPSHOT}/images/${DOCKER_DIGEST})
-        git clone --depth=1 https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.wiki.git wiki
-        cd wiki
-        echo "* [\`"${DOCKER_DIGEST_SHORT}"\`]("${DOCKER_IMAGE_HISTORY_URL}")" | tee -a HOME.md
-        echo "    * uploaded on "$(date --iso-8601="minutes") | tee -a HOME.md
-        echo "    * snapshot" | tee -a HOME.md
-        echo "        * [\`"${DOCKER_SNAPSHOT}"\`]("${DOCKER_SNAPSHOT_IMAGE_HISTORY_URL}")" | tee -a HOME.md
-        git config --local user.email "${GIT_CONFIG_EMAIL}"
-        git config --local user.name "${GIT_CONFIG_USER}"
-        git add HOME.md
-        git commit -m "Update HOME.md"
-        git push origin master
+      - uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.12
+        id: docker
+        with:
+          name: ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGENAME }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          snapshot: true
+      - name: Update GitHub wiki
+        env:
+          DOCKER_TAGNAME: ${{ steps.docker.outputs.tag }}
+          DOCKER_DIGEST_RAW: ${{ steps.docker.outputs.digest }}
+          DOCKER_SNAPSHOT: ${{ steps.docker.outputs.snapshot-tag }}
+        run: |
+          DOCKER_DIGEST=$(echo $DOCKER_DIGEST_RAW | sed -E 's/.*@sha256:(.*)/sha256-\1/g')
+          DOCKER_DIGEST_SHORT=$(echo $DOCKER_DIGEST | sed -E 's/.*([0-9a-z]{12})[0-9a-z]{52}$/\1/g')
+          DOCKER_IMAGE_HISTORY_URL=$(echo https://hub.docker.com/layers/${DOCKER_USERNAME}/${DOCKER_IMAGENAME}/${DOCKER_TAGNAME}/images/${DOCKER_DIGEST})
+          DOCKER_SNAPSHOT_IMAGE_HISTORY_URL=$(echo https://hub.docker.com/layers/${DOCKER_USERNAME}/${DOCKER_IMAGENAME}/${DOCKER_SNAPSHOT}/images/${DOCKER_DIGEST})
+          git clone --depth=1 https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.wiki.git wiki
+          cd wiki
+          LINE=$(grep -n "add msg after this line" hoge.md | cut -d ":" -f 1)
+          head -n $LINE hoge.md > tmp.md
+          echo "* [\`${DOCKER_DIGEST_SHORT}\`](${DOCKER_IMAGE_HISTORY_URL})" | tee -a tmp.md
+          echo "    * uploaded on $(gdate --iso-8601="minutes")" | tee -a tmp.md
+          echo "        * https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}/checks" | tee -a tmp.md
+          echo "    * snapshot" | tee -a tmp.md
+          echo "        * [\`${DOCKER_SNAPSHOT}\`](${DOCKER_SNAPSHOT_IMAGE_HISTORY_URL})" | tee -a tmp.md
+          tail -n +$(( $LINE+1 )) hoge.md >> tmp.md
+          mv tmp.md Home.md
+          git config --local user.email "${GIT_CONFIG_EMAIL}"
+          git config --local user.name "${GIT_CONFIG_USER}"
+          git add Home.md
+          git commit -m "Update Home.md"
+          git push origin master
