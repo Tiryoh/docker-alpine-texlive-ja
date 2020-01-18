@@ -5,7 +5,7 @@
 
 Minimal TeX Live image with Japanese font based on alpine
 
-Docker tag lists and build logs are listed on this page.  
+Docker tags and build logs are listed on this page.  
 https://github.com/Tiryoh/docker_alpine-texlive-ja/wiki
 
 ## Table of Contents
