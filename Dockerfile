@@ -4,7 +4,7 @@
 # Released under the MIT license
 # https://opensource.org/licenses/MIT
 
-FROM frolvlad/alpine-glibc:latest
+FROM frolvlad/alpine-glibc:alpine-3.10_glibc-2.30
 
 ENV PATH /usr/local/texlive/2019/bin/x86_64-linux:$PATH
 
