@@ -14,6 +14,7 @@ env:
   DOCKER_IMAGENAME: alpine-texlive-ja
   GIT_CONFIG_USER: Tiryoh
   GIT_CONFIG_EMAIL: tiryoh@gmail.com
+  TEXLIVE_VERSION: 2020
 
 jobs:
   update:
@@ -28,6 +29,7 @@ jobs:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           snapshot: true
+          tags: "latest,${{ env.TEXLIVE_VERSION }}"
       - name: Get Job URL
         uses: Tiryoh/gha-jobid-action@v0
         id: jobs
