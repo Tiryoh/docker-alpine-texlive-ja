@@ -1,7 +1,9 @@
 # tiryoh/alpine-texlive-ja
 
 [![Docker Automated build](https://img.shields.io/docker/automated/tiryoh/alpine-texlive-ja.svg)](https://hub.docker.com/r/tiryoh/alpine-texlive-ja/)
-[![Docker Image Size](https://images.microbadger.com/badges/image/tiryoh/alpine-texlive-ja.svg)](https://microbadger.com/images/tiryoh/alpine-texlive-ja "Get your own image badge on microbadger.com")
+[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/tiryoh/alpine-texlive-ja/latest)](https://hub.docker.com/r/tiryoh/alpine-texlive-ja/tags?page=1&name=latest)
+[![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/tiryoh/alpine-texlive-ja/latest)](https://hub.docker.com/r/tiryoh/alpine-texlive-ja/tags?page=1&name=latest)
+
 
 Minimal TeX Live image with Japanese font based on alpine
 
