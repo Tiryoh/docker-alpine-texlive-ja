@@ -7,7 +7,7 @@ on:
       - "Dockerfile"
       - ".github/workflows/**"
   schedule:
-    - cron: "0 2 * * 0" # Weekly on Sundays at 02:00
+    - cron: "0 4 1 * *" # Monthly on 1th at 13:00(JST)
 
 env:
   DOCKER_USERNAME: tiryoh
@@ -20,9 +20,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.12
+        uses: elgohr/Publish-Docker-Github-Action@2.21
         id: docker
         with:
           name: ${{ env.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGENAME }}
