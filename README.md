@@ -1,3 +1,5 @@
+This repository is no longer maintained and has been moved to https://github.com/Tiryoh/docker-texlive-ja.
+
 # tiryoh/alpine-texlive-ja
 
 [![Docker Automated build](https://img.shields.io/docker/automated/tiryoh/alpine-texlive-ja.svg)](https://hub.docker.com/r/tiryoh/alpine-texlive-ja/)
